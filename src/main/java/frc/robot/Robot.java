@@ -21,6 +21,13 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
   /**
+   *
+   * Start non auto-generated object members.
+   *
+   */
+  private SimpleDriver driver;
+
+  /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
@@ -29,6 +36,9 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
+
+    driver = new SimpleDriver(1, 2, 3, 4); //Create our "SimpleDriver" and
+                                                                             // assign channels through constructor
   }
 
   /**
@@ -68,6 +78,8 @@ public class Robot extends TimedRobot {
     //      *really* simple. IE: Robot.frontWheels.moveFwd(int units);
     // -
     //      Any ideas?
+
+    driver.drive(50);
 
     switch (m_autoSelected) {
       case kCustomAuto:
