@@ -18,10 +18,10 @@ Odd's are this will need some setup from a programming mentor, but the basics ar
 Currently the most basic turtle commands exist. For example, you may find code like this in the "CleanRoom" class, which is where all of the simplistic code will probably live.
 
 ```
-robot.drive(100); //Drive forwards at 0.75 speed.
-robot.turn(200); //Turn clockwise at 0.75 speed.
-robot.drive(-100); //Drive backwards at 0.75 speed.
-robot.turn(-200); //Turn counter-clockwise at 0.75 speed.
+robot.drive(100);      //Drive forwards at 0.75 speed.
+robot.turn(200);       //Turn clockwise at 0.75 speed.
+robot.drive(-100);     //Drive backwards at 0.75 speed.
+robot.turn(-200);      //Turn counter-clockwise at 0.75 speed.
 robot.drive(200, 1.0); //Drive forward at 1.0 speed. (The maximum)
 ```
 In addition, other commands will likely be implemented later for control of leds on the robot, or maybe a system to allow for drawing like most software turtles are capable of.
