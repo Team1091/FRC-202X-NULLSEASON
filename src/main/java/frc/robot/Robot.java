@@ -30,10 +30,14 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    robot = new robotInterface(1, 2, 3, 4); //Create our "SimpleDriver" and
-                                                                              // assign channels through constructor
+    try {
+      robot = new robotInterface(1, -1, 2, -1);
+    } catch (Exception e) {
+      System.out.println(e.toString());
+      e.printStackTrace();
+    }
+    //Create our "SimpleDriver" and assign channels through constructor
     room = new CleanRoom(robot); //Assign a robot to be controlled by our "room"
-
   }
 
   /**
@@ -60,6 +64,7 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     simulRunner = new Thread(room); //Start a new thread that will run our code for a while, but we can still feed
     //the watchdog while it chugs away
+    simulRunner.start();
   }
 
   /** This function is called periodically during autonomous. */

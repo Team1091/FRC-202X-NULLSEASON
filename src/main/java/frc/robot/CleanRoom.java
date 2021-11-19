@@ -22,9 +22,9 @@ public class CleanRoom implements Runnable{
     @Override
     public void run() { //This function is where the bulk of your code will be, it is run one time, but can go on as
                         //long as you need.
-        robot.drive(1000);
-        robot.turn(5000);
-        robot.drive(-1000);
+        robot.forward(1000);
+        robot.turnRight(5000);
+        robot.reverse(1000);
     }
 
     public void repeater() { //This function is called every once in a while when the robot is running, however if this
