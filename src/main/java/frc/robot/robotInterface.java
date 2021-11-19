@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
-public class SimpleDriver {
+public class robotInterface {
     //TODO: Find out what we will be actually using for this
     private SpeedController m_frontLeft;  //Describes the front left wheel.
     private SpeedController m_rearLeft; //Describes the rear left wheel.
@@ -23,7 +23,7 @@ public class SimpleDriver {
      * @param chFrontRight Describes the channel that the front right motor will use.
      * @param chRearRight Describes the channel that the rear right motor will use.
      */
-    public SimpleDriver(int chFrontLeft, int chRearLeft, int chFrontRight, int chRearRight) {
+    public robotInterface(int chFrontLeft, int chRearLeft, int chFrontRight, int chRearRight) {
         m_frontLeft = new PWMVictorSPX(chFrontLeft); //Assign the front left wheel a channel and motor, which is how it
                                                      //communicates with the RoboRio electronically.
         m_rearLeft = new PWMVictorSPX(chRearLeft);   //Do the same with the rear left.
@@ -55,15 +55,41 @@ public class SimpleDriver {
                                                                      //right side. Multiply by dir to determine the
                                                                      //direction we want to travel.
 
-        //We probably want some code to ease these values so that the test bot can be used for a long time.
+        //We probably want some code to ease in and out these values so that the test bot can be used for a long time.
+        //Similar to what we do with the real robot.
 
         try { //This is a try except block. It is needed because the function "Thread.sleep" can throw an exception.
               //We could choose to let the exception propagate, but we just want to know as soon as possible.
 
-            Thread.sleep(1000L * Math.abs(units)); //Wait for 500 milliseconds, units number of times.
+            Thread.sleep(1000L * Math.abs(units)); //Wait for 1000 milliseconds, 'units' number of times.
         } catch (InterruptedException e) {
             e.printStackTrace(); //This function prints a stacktrace. A stacktrace is a type of error message that
                                  //describes the path code took to reach a certain point.
+        }
+
+        m_drive.tankDrive(0, 0); //We finished driving x amount of units. We can now stop the motors.
+    }
+
+    /**
+     * @param units Units is an entirely arbitrary descriptor of rotation. Use it to tell how far the robot should move.
+     *              One unit is however far the robot can turn in 1 second. IE: Can vary a lot.
+     */
+    public void turn(int units) {
+        int dir = 0; //1 == forwards, -1 is backwards.
+
+        if(units > 0) dir = 1; //If units is more than one, we are turning right (clockwise).
+        if(units < 0) dir = -1; //If units are less than one, we are turning left (counterclockwise).
+//      if(units == 0) dir = 0; Not needed, but shown for clarity. If units equals zero, we don't turn.
+
+        m_drive.tankDrive(0.75 * dir, -0.75 * dir);
+
+        try { //This is a try except block. It is needed because the function "Thread.sleep" can throw an exception.
+            //We could choose to let the exception propagate, but we just want to know as soon as possible.
+
+            Thread.sleep(1000L * Math.abs(units)); //Wait for 1000 milliseconds, 'units' number of times.
+        } catch (InterruptedException e) {
+            e.printStackTrace(); //This function prints a stacktrace. A stacktrace is a type of error message that
+            //describes the path code took to reach a certain point.
         }
 
         m_drive.tankDrive(0, 0); //We finished driving x amount of units. We can now stop the motors.

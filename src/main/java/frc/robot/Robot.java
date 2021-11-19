@@ -15,17 +15,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * project.
  */
 public class Robot extends TimedRobot {
-  private static final String kDefaultAuto = "Default";
-  private static final String kCustomAuto = "My Auto";
-  private String m_autoSelected;
-  private final SendableChooser<String> m_chooser = new SendableChooser<>();
-
   /**
    *
    * Start non auto-generated object members.
    *
    */
-  private SimpleDriver driver;
+  private robotInterface robot;
+  private Thread simulRunner;
+  private CleanRoom room;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -33,12 +30,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
-    m_chooser.addOption("My Auto", kCustomAuto);
-    SmartDashboard.putData("Auto choices", m_chooser);
+    robot = new robotInterface(1, 2, 3, 4); //Create our "SimpleDriver" and
+                                                                              // assign channels through constructor
+    room = new CleanRoom(robot); //Assign a robot to be controlled by our "room"
 
-    driver = new SimpleDriver(1, 2, 3, 4); //Create our "SimpleDriver" and
-                                                                             // assign channels through constructor
   }
 
   /**
@@ -63,33 +58,14 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autoSelected = m_chooser.getSelected();
-    // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
-    System.out.println("Auto selected: " + m_autoSelected);
+    simulRunner = new Thread(room); //Start a new thread that will run our code for a while, but we can still feed
+    //the watchdog while it chugs away
   }
 
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
-
-    //TODO: Write some example stuff here, I expect we end up using the physical robot almost like a
-    //      software turtle, however that is yet to be seen.
-    //      I would also like to see how we can further abstract away some of the fine control to make things
-    //      *really* simple. IE: Robot.frontWheels.moveFwd(int units);
-    // -
-    //      Any ideas?
-
-    driver.drive(50);
-
-    switch (m_autoSelected) {
-      case kCustomAuto:
-        // Put custom auto code here
-        break;
-      case kDefaultAuto:
-      default:
-        // Put default auto code here
-        break;
-    }
+    room.repeater();
   }
 
   /** This function is called once when teleop is enabled. */
