@@ -1,5 +1,5 @@
 # FRC-202X-NULLSEASON
-## This is a project for use with a dummy robot, whether it be through our simulator, or an IRL robot. It uses the standard libraries controlled and developed by WPI.
+## This is a project for use with a dummy robot, whether it be through a simulator, or an IRL robot. It uses the standard libraries controlled and developed by WPI.
 
 The primary goal of this project is to create a highly abstracted interface for controlling a standard FRC (First Robotics Competition) Robot.
 Derived from this we hope to be able to allow even users with a basic level of Java or Computer Science knowledge to interact with a RoboRio and similar hardware.
