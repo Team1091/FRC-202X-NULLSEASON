@@ -61,6 +61,14 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
+
+    //TODO: Write some example stuff here, I expect we end up using the physical robot almost like a
+    //      software turtle, however that is yet to be seen.
+    //      I would also like to see how we can further abstract away some of the fine control to make things
+    //      *really* simple. IE: Robot.frontWheels.moveFwd(int units);
+    // -
+    //      Any ideas?
+
     switch (m_autoSelected) {
       case kCustomAuto:
         // Put custom auto code here
