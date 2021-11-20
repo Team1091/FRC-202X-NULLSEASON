@@ -177,7 +177,7 @@ public class robotInterface {
      * Identical to the standard drive function;
      */
     public void forward(int units) {
-        drive(units * -1);
+        drive(units);
     }
 
     /**
@@ -188,7 +188,7 @@ public class robotInterface {
      * Identical to the standard drive function.
      */
     public void forward(int units, double power) {
-        drive(units * -1, power);
+        drive(units, power);
     }
 
     /**
@@ -202,7 +202,7 @@ public class robotInterface {
      * Identical to the standard drive function.
      */
     public void forward(int units, double powerFL, double powerRL, double powerFR, double powerRR) {
-        drive(units * -1, powerFL, powerRL, powerFR, powerRR);
+        drive(units, powerFL, powerRL, powerFR, powerRR);
     }
 
     /**
