@@ -12,7 +12,7 @@ to build a simplistic robot that can fully use the capabilities described by thi
 If your team found this helpful, shoot us an email and tell us! It would mean a lot :)
 
 ## Setup
-Odd's are this will need some setup from a programming mentor, but the basics are as follows, change the preconfigured variables for our team, namely team number and base package. From there you should be able to use it through IntelliJ, or another IDE that can use Gradle.
+Odds are this will need some setup from a programming mentor, but the basics are as follows, change the preconfigured variables for our team, namely team number and base package. From there you should be able to use it through IntelliJ, or another IDE that can use Gradle.
 
 ## Example
 Currently the most basic turtle commands exist. For example, you may find code like this in the "CleanRoom" class, which is where all of the simplistic code will probably live.
