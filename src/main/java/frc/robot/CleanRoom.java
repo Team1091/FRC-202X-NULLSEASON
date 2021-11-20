@@ -1,12 +1,5 @@
 package frc.robot;
 
-//TODO: Write some example stuff here, I expect we end up using the physical robot almost like a
-//      software turtle, however that is yet to be seen.
-//      I would also like to see how we can further abstract away some of the fine control to make things
-//      *really* simple. IE: robot.moveFwd(int units);
-// -
-//      Any ideas?
-
 public class CleanRoom implements Runnable{
     private final robotInterface robot; //This is a robot instance, and that's how you control the robot.
 

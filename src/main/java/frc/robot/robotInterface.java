@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.PWMVictorSPX;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import frc.robot.RobotComponent.EasingPWM;
 
 public class robotInterface {
     private SpeedController m_frontLeft;  //Describes the front left wheel.
@@ -44,17 +45,17 @@ public class robotInterface {
 
         if(numLeftMotors == 1) { //Configure if there is one right motor.
             if(flReal) { //Use the channel for the "real" motor.
-                m_left = new PWMVictorSPX(chFrontLeft);
+                m_left = new EasingPWM(chFrontLeft);
             }
             if(rlReal) {
-                m_left = new PWMVictorSPX(chFrontRight);
+                m_left = new EasingPWM(chFrontRight);
             }
         }
         if(numLeftMotors == 2) { //Configure if there is two right motors.
-            m_frontLeft = new PWMVictorSPX(chFrontLeft);
+            m_frontLeft = new EasingPWM(chFrontLeft);
             //Assign the front left wheel a channel and motor, which is how it communicates with the RoboRio
             //electronically.
-            m_rearLeft = new PWMVictorSPX(chRearLeft);
+            m_rearLeft = new EasingPWM(chRearLeft);
             //Do the same with the rear left.
             m_left = new SpeedControllerGroup(m_frontLeft, m_rearLeft);
             //Tie the two left side motors together in a helper class used by DifferentialDrive.
@@ -62,17 +63,17 @@ public class robotInterface {
 
         if(numRightMotors == 1) { //Configure if there is one right motor.
             if(frReal) { //Use the channel for the "real" motor.
-                m_right = new PWMVictorSPX(chFrontRight);
+                m_right = new EasingPWM(chFrontRight);
             }
             if(rrReal) {
-                m_right = new PWMVictorSPX(chRearRight);
+                m_right = new EasingPWM(chRearRight);
             }
         }
         if(numRightMotors == 2) { //Configure if there is two right motors.
-            m_frontRight = new PWMVictorSPX(chFrontRight);
+            m_frontRight = new EasingPWM(chFrontRight);
             //Assign the front right wheel a channel and motor, which is how it communicates with the RoboRio
             //electronically.
-            m_rearRight = new PWMVictorSPX(chRearRight);
+            m_rearRight = new EasingPWM(chRearRight);
             //Do the same with the rear right.
             m_right = new SpeedControllerGroup(m_frontRight, m_rearRight);
             //Tie the two right side motors together in a helper class used by DifferentialDrive.
@@ -96,9 +97,6 @@ public class robotInterface {
         m_drive.tankDrive(0.75 * dir, 0.75 * dir); //Start the robot's motors on both the left and
         //right side. Multiply by dir to determine the
         //direction we want to travel.
-
-        //TODO: Ease in and out these speed values so that the test bot can be used for a long time.
-        //      Similar to what we do with the real robot.
 
         Util.sleep(1000L * Math.abs(units));//Wait for 1000 milliseconds, 'units' number of times.
 
